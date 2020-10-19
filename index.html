@@ -7,6 +7,7 @@
 <body>
      <!--
        Se usa navbar de Bootstrap para responsive design
+       https://getbootstrap.com/docs/4.5/components/navbar/
      -->
   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
     <a class="navbar-brand" href="#">Ver Github</a>
@@ -49,7 +50,20 @@
       </ul>
     </div>  
   </nav>
+
+  <input type="file" accept="image/*" id="captureFile">
+  <img src="" id="pictureUploaded" alt="image to be displayed">
   
+  <div class="camera">
+    <video id="video">Video stream not available.</video>
+    <button id="startbutton">Take photo</button>
+  </div>
+
+  <canvas id="canvas">
+  </canvas>
+  <div class="output">
+    <img id="photo" alt="The screen capture will appear in this box.">
+  </div>
   
 
     <!--
@@ -57,8 +71,10 @@
     -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="scripts/index.js"></script>
+    <script src="scripts/camera.js"></script>
+    <script src="scripts/getFiles.js"></script>
+
 </body>
 </html>
