@@ -3,6 +3,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Res Design 1</title>
+
+
+   
+
 </head>
 <body>
      <!--
@@ -58,12 +62,17 @@
 
   <input type="file" accept="image/*" id="captureFile" style ="display:none">
   
-  <img src="" id="pictureUploaded" class="img-fluid" alt="Sube o Captura una imagen!">
+  <img src="" id="pictureUploaded" class="img-fluid" alt="Sube o Captura una imagen!" style ="display:none">
 
   <div id="container">
-    <div id="gallery">
+    <div id="gallery" class="slideshow-container">
+    
+     
 
+      <a class="prev d-flex justify-content-start" onclick="plusSlides(-1)">&#10094;</a>
+      <a class="next d-flex justify-content-end" onclick="plusSlides(1)">&#10095;</a>
     </div>
+    
 
     <!-- <div id="camera-body">
       <div class="camera">
@@ -89,16 +98,18 @@
 
  
   
-
     <!--
         https://getbootstrap.com/docs/4.1/getting-started/download/#bootstrapcdn
     -->
+    <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="scripts/camera.js"></script>
     <script src="scripts/getFiles.js"></script>
+    <!-- <script src="scripts/gallery.js"></script> -->
+   
 
 </body>
 </html>
