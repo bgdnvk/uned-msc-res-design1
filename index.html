@@ -26,7 +26,12 @@
           <a class="nav-link" href="#">tomar foto</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">subir foto</a>
+          <!-- para no tener visible el input en la página
+          y usar los botones simplement se captura el click desde aquí-->
+          <a class="nav-link" href="#"
+          onclick="document.getElementById('captureFile').click();"
+          >subir foto
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">ver fotos</a>
@@ -51,19 +56,38 @@
     </div>  
   </nav>
 
-  <input type="file" accept="image/*" id="captureFile">
-  <img src="" id="pictureUploaded" alt="image to be displayed">
+  <input type="file" accept="image/*" id="captureFile" style ="display:none">
   
-  <div class="camera">
-    <video id="video">Video stream not available.</video>
-    <button id="startbutton">Take photo</button>
+  <img src="" id="pictureUploaded" class="img-fluid" alt="Sube o Captura una imagen!">
+
+  <div id="container">
+    <div id="gallery">
+
+    </div>
+
+    <!-- <div id="camera-body">
+      <div class="camera">
+        <video id="video">Video stream not available.</video>
+        <button id="startbutton">Take photo</button>
+      </div>
+   
+      <canvas id="canvas">
+      </canvas>
+      <div class="output">
+        <img id="photo" alt="The screen capture will appear in this box.">
+      </div>
+    </div> -->
+
+    <!--
+	Ideally these elements aren't created until it's confirmed that the 
+	client supports video/camera, but for the sake of illustrating the 
+	elements involved, they are created with markup (not JavaScript)
+--> <video id="video" width="640" height="480" autoplay></video>
+    <button id="snap">Snap Photo</button>
+    <canvas id="canvas" width="640" height="480"></canvas>
   </div>
 
-  <canvas id="canvas">
-  </canvas>
-  <div class="output">
-    <img id="photo" alt="The screen capture will appear in this box.">
-  </div>
+ 
   
 
     <!--
