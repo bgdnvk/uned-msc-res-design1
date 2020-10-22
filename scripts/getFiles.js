@@ -82,6 +82,11 @@ function addThumb(img){
     imgThumb.src = localStorage.getItem(img);
     imgThumb.style.width = "200px";
     // imgThumb.height = "200px";
+    imgThumb.className = "img-fluid";
+    imgThumb.className = "img-thumbnail";
+    // imgThumb.className = "rounded";
+
+
     galeriaThumb.appendChild(imgThumb);
 
   }
