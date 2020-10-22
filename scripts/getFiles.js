@@ -29,6 +29,9 @@ document.querySelector("#captureFile").addEventListener("change", function(){
             // console.log(img);
             // galeria.appendChild(img);
             addImgs(pictureName);
+    
+
+            
 
         } catch (e){
             console.log(e);
@@ -46,24 +49,13 @@ document.querySelector("#captureFile").addEventListener("change", function(){
 //función para agregar imagenes a la galería
 function addImgs(imagen){
     const galeria = document.querySelector("#gallery");
-    const img = document.createElement("img");
-    const text = document.createElement("p");
-
-    const slide = document.createElement("div");
+    const img = document.querySelector("#imagenGaleria");
 
     img.src = localStorage.getItem(imagen);
-    img.className = "img-fluid";
-    // console.log(img);
-    console.log(imagen);
-    text.textContent = imagen;
-    text.className = "text";
-    text.className = "centered";
-
-    slide.appendChild(img);
-    slide.appendChild(text);
-
-    galeria.appendChild(slide);
-
+    // console.log(imagen);
+    // console.log(galeria);
+    addThumb(imagen);
+    changeText(imagen);
 }
 
 window.addEventListener('load', (event) => {
@@ -77,9 +69,29 @@ window.addEventListener('load', (event) => {
 
     Object.keys(localStorage).forEach(function(key){
         addImgs(key);
+        
      });
 
   });
+
+//se agrega los thumbnails
+function addThumb(img){
+    const galeriaThumb = document.querySelector("#galeriaThumb");
+    const imgThumb = document.createElement("img");
+
+    imgThumb.src = localStorage.getItem(img);
+    imgThumb.style.width = "200px";
+    // imgThumb.height = "200px";
+    galeriaThumb.appendChild(imgThumb);
+
+  }
+
+function changeText(imagen){
+    const text = document.querySelector("#imageName");
+    text.innerHTML = imagen; 
+
+
+  }
 
 
 
