@@ -64,18 +64,19 @@
   
   <img src="" id="pictureUploaded" class="img-fluid" alt="Sube o Captura una imagen!" style ="display:none">
 
-  <div id="container">
+  <div id="container" >
     <div id="gallery" class="slideshow-container">
       <img id="imagenGaleria" src="imgs/muestra.jpg" class ="img-fluid" alt=""> 
       <a class="prev d-flex " onclick="plusSlides(-1)">&#10094;</a>
       <a class="next d-flex " onclick="plusSlides(1)">&#10095;</a>
-      <p id="imageName">nombre de la imagen</p>
+      <p id="imageName" class="galeria-centro">nombre de la imagen</p>
 
-      
-      
+      <i class="material-icons galeria-centro" id="add" onclick="saveImage()">add</i>
+      <i class="material-icons galeria-centro" id="remove" onclick="removeImage()">remove</i>
+
 
     </div>
-    <div id="galeriaThumb"></div>
+    <div id="galeriaThumb" class="container-galeria"></div>
     
 
     <!-- <div id="camera-body">
@@ -105,6 +106,8 @@
     <!--
         https://getbootstrap.com/docs/4.1/getting-started/download/#bootstrapcdn
     -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

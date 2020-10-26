@@ -12,15 +12,12 @@ document.querySelector("#captureFile").addEventListener("change", function(){
     const pictureName = this.files[0].name;
 
     // const galeria = document.querySelector("#gallery");
-    
-
     reader.addEventListener("load", ()=>{
         // console.log(reader.result);
         // console.log(pictureName);
         try{
             localStorage.setItem(`${pictureName}`, reader.result);
             preview.src = reader.result;
-
             //agrega imgs a galeria
             //refactor code l8r
             // const img = document.createElement("img");
@@ -29,22 +26,27 @@ document.querySelector("#captureFile").addEventListener("change", function(){
             // console.log(img);
             // galeria.appendChild(img);
             addImgs(pictureName);
-    
-
-            
-
         } catch (e){
             console.log(e);
             alert("NOPE");
         }
-            
     });
 
     if (file) {
         reader.readAsDataURL(file);
       }
-
 });
+
+document.querySelector("#add").addEventListener("click", saveImage);
+document.querySelector("#remove").addEventListener("click", removeImage);
+
+function saveImage(img){
+
+}
+
+function removeImage(){
+
+}
 
 //función para agregar imagenes a la galería
 function addImgs(imagen){
@@ -80,7 +82,10 @@ function addThumb(img){
     const imgThumb = document.createElement("img");
 
     imgThumb.src = localStorage.getItem(img);
-    imgThumb.style.width = "200px";
+    imgThumb.style.width = "300px";
+    imgThumb.style.height = "300px";
+
+    
     // imgThumb.height = "200px";
     imgThumb.className = "img-fluid";
     imgThumb.className = "img-thumbnail";
@@ -93,9 +98,8 @@ function addThumb(img){
 
 function changeText(imagen){
     const text = document.querySelector("#imageName");
-    text.innerHTML = imagen; 
-
-
+    text.innerHTML = imagen.slice(0,-4); 
+    console.log(typeof(imagen));
   }
 
 
