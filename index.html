@@ -66,7 +66,9 @@
 
   <div id="container" >
     <div id="gallery" class="slideshow-container">
-      <img id="imagenGaleria" src="imgs/muestra.jpg" class ="img-fluid" alt=""> 
+      <!-- https://stackoverflow.com/a/42374038 -->
+      <img id="imagenGaleria"  src="imgs/muestra.jpg" 
+      class ="img-fluid" alt="Imagen mostrada en la galeria"> 
       <a class="prev d-flex " onclick="plusSlides(-1)">&#10094;</a>
       <a class="next d-flex " onclick="plusSlides(1)">&#10095;</a>
       <p id="imageName" class="galeria-centro">nombre de la imagen</p>
@@ -77,6 +79,9 @@
 
     </div>
     <div id="galeriaThumb" class="container-galeria"></div>
+
+    <!-- <input id="imgChange" type="file"><br>
+    <img id="newImg" alt="newimgtochange"> -->
     
 
     <!-- <div id="camera-body">
