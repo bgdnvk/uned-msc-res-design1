@@ -1,0 +1,19 @@
+.sepia{
+    -webkit-filter: sepia(1);
+    filter: sepia(1);
+}
+
+.hue-rotate{
+    -webkit-filter: hue-rotate(90deg);
+    filter: hue-rotate(90deg);
+}
+
+.contrast{
+    -webkit-filter: contrast(4);
+    filter: contrast(4);
+}
+
+.blurr{
+    -webkit-filter: blur(5px);
+    filter: blur(5px);
+}

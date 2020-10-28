@@ -1,42 +1,3 @@
-
-// document.querySelector("#captureFile").addEventListener("change", function(){
-//     // console.log(files);
-//     //https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL
-//     console.log(this.files);
-//     //filereader converts to data url
-//     const reader = new FileReader();
-//     // console.log(reader);
-//     // console.log(reader.result);
-//     const preview = document.querySelector('img');
-//     const file = document.querySelector('input[type=file]').files[0];
-//     const pictureName = this.files[0].name;
-
-//     // const galeria = document.querySelector("#gallery");
-//     reader.addEventListener("load", ()=>{
-//         // console.log(reader.result);
-//         // console.log(pictureName);
-//         try{
-//             localStorage.setItem(`${pictureName}`, reader.result);
-//             preview.src = reader.result;
-//             //agrega imgs a galeria
-//             //refactor code l8r
-//             // const img = document.createElement("img");
-//             // img.src = localStorage.getItem(pictureName);
-//             // img.className = "img-fluid";
-//             // console.log(img);
-//             // galeria.appendChild(img);
-//             addImgs(pictureName);
-//         } catch (e){
-//             console.log(e);
-//             alert("NOPE");
-//         }
-//     });
-
-//     if (file) {
-//         reader.readAsDataURL(file);
-//       }
-// });
-
 // ARR IMG
 let arrImgs = [];
 let totalImgs = arrImgs.length;
@@ -49,14 +10,34 @@ const preview = document.querySelector('#imagenGaleria');
 //https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL
 document.querySelector('#captureFile').addEventListener("change", previewFile);
 
+const addBtn = document.querySelector("#add");
+addBtn.addEventListener("click", saveImage);
+
+
+function hideAddBtn(){
+    addBtn.style.display = "none";
+}
+hideAddBtn();
+
+document.querySelector("#remove").addEventListener("click", removeImage);
+const removeBtn = document.querySelector("#remove");
+// removeBtn.style.display = "none";
+
 function previewFile() {
-    console.log("is triggered");
+    // console.log("is triggered");
     // const preview = document.querySelector('#imagenGaleria');
     const {file, reader} = getFileReader();
+
+    addBtn.style.display = "block";
+    // removeBtn.style.display = "block";
+    
 
     reader.addEventListener("load", function () {
       // convert image file to base64 string
       preview.src = reader.result;
+      setText(file.name);
+    //   console.log("file on load is "+file.name);
+        
     }, false);
  
 
@@ -74,6 +55,8 @@ function getFileReader(){
     console.log("inside fileReader");
     console.log(reader.result);
     console.log(file);
+
+   
     return {
         file: file,
         reader: reader
@@ -81,13 +64,15 @@ function getFileReader(){
 }
 
 
-document.querySelector("#add").addEventListener("click", saveImage);
-document.querySelector("#remove").addEventListener("click", removeImage);
 
 function saveImage(){
     const {file, reader} = getFileReader();
 
     
+    //check para comprobar si se ha subido una img
+    if(arrImgs.length === 0 && reader.result === null){
+        alert("Necesitas subir una foto");
+    }
   
         reader.onload = () => {
             try {
@@ -104,26 +89,43 @@ function saveImage(){
             }
 
         } 
-
-        // if(file){
-        //     localStorage.setItem(`${file.name}`, reader.result);
-        //     console.log("saved item");
-        //     console.log(file.name);
-        //     console.log(reader.result);
-        //     addImgs(file.name);
-        // } else {
-        //     console.log("no file");
-        // }
-        
-  
-    
-
 }
 
 function removeImage(){
-    removeThumb(currentSlideName());
-    localStorage.removeItem(currentSlideName());
-    arrImgRemove(currentSlideName());
+    console.log("####inside removeImage");
+
+    if(arrImgs.length === 0){
+        alert("No hay nada que borrar");
+    } else {
+        let currentSlide = currentSlideName();
+        console.log("about to remove: "+currentSlide);
+        console.log("about to remove indx: "+currenntImgIndx());
+        console.log("arr b4 removing is "+arrImgs);
+    
+    
+        let prevSlide = getPrevImg();
+    
+        preview.src = localStorage.getItem(prevSlide);
+        console.log("current picture is "+prevSlide);
+    
+        removeThumb(currentSlide);
+        arrImgRemove(currentSlide);
+        localStorage.removeItem(currentSlide);
+    
+        currentImage = prevSlide;
+        setText(currentImage);
+        console.log("currentImage is: ");
+        console.log(currentImage);
+        console.log("arr after removing is "+arrImgs);
+
+        if(arrImgs.length === 0){
+            preview.src = "imgs/muestra.jpg";
+        }
+    }
+    
+
+
+
 }
 
 //función para agregar imagenes a la galería
@@ -137,9 +139,10 @@ function addImgs(imagen){
     arrImgs.push(imagen);
     currentImage = imagen;
     // console.log(imagen);
+    console.log("currentImage is "+imagen);
     // console.log(galeria);
     addThumb(imagen);
-    changeText(imagen);
+    setText(imagen);
 }
 
 window.addEventListener('load', (event) => {
@@ -160,6 +163,8 @@ window.addEventListener('load', (event) => {
         // console.log(currentImage);
      });
 
+     console.log("arr is");
+     console.log(arrImgs);
   });
 
 //se agrega los thumbnails
@@ -170,30 +175,37 @@ function addThumb(img){
     // console.log("thimb added is");
     // console.log(img);
 
-    imgThumb.src = localStorage.getItem(img);
-    imgThumb.style.width = "300px";
-    imgThumb.style.height = "300px";
-    imgThumb.id = img;
+    if(document.getElementById(img)){
+        alert("Ya has agregado esta imagen!");
+    } else {
+        imgThumb.src = localStorage.getItem(img);
+        imgThumb.style.width = "300px";
+        imgThumb.style.height = "300px";
+        imgThumb.id = img;
+        
     
-    // imgThumb.height = "200px";
-    imgThumb.className = "img-fluid";
-    imgThumb.className = "img-thumbnail";
-    // imgThumb.className = "rounded";
+        // imgThumb.height = "200px";
+        imgThumb.className = "img-fluid";
+        imgThumb.className = "img-thumbnail";
+        // imgThumb.className = "rounded";
+    
+    
+        galeriaThumb.appendChild(imgThumb);
+    }
 
-
-    galeriaThumb.appendChild(imgThumb);
+   
 
   }
 
 function removeThumb(imgName){
     console.log("removing thumb: ");
-    console.log(imgName);
+    // console.log(imgName);
     let thumb = document.getElementById(imgName);
-    console.log(thumb);
+    // console.log(thumb);
     thumb.remove();
 }
 
-function changeText(imagen){
+function setText(imagen){
     const text = document.querySelector("#imageName");
     text.innerHTML = imagen.slice(0,-4); 
     // console.log(typeof(imagen));
@@ -201,14 +213,13 @@ function changeText(imagen){
 
 
 
-
-
-
 //Local storage/array manipulación
 function currenntImgIndx(){
-    console.log("----currentImgIndx is "+arrImgs.indexOf(currentSlideName()));
+    // console.log("----currentImgIndx is "+arrImgs.indexOf(currentSlideName()));
+    console.log("----currentImgIndx is "+arrImgs.indexOf(currentImage));
+
     // console.log(arrImgs.indexOf(currentSlideName()));
-    return arrImgs.indexOf(currentSlideName());
+    return arrImgs.indexOf(currentImage);
 }
 
 function arrImgAdd(imgName){
@@ -216,7 +227,7 @@ function arrImgAdd(imgName){
 }
 
 function arrImgRemove(imgName){
-    arrImgs.splice(currenntImgIndx(), 1);
+    arrImgs.splice(arrImgs.indexOf(imgName), 1);
 }
 
 function getPrevImg(){
@@ -226,6 +237,7 @@ function getPrevImg(){
 
     if(currenntImgIndx() === 0){
         console.log(currentSlideName());
+        console.log("the returned slide is "+arrImgs[arrImgs.length-1]);
         return arrImgs[arrImgs.length-1];
     }
     
@@ -256,19 +268,42 @@ function getNextImg(){
 
 
 function nextSlide(){
-    currentImage = getNextImg();
-    preview.src = localStorage.getItem(currentImage);
-    console.log("inside nextSlide current img is "+currentImage);
+hideAddBtn();
+    
+
+    if(arrImgs.length === 0){
+        alert("Necesitas Subir Una foto!")
+    } else{
+        currentImage = getNextImg();
+        preview.src = localStorage.getItem(currentImage);
+        setText(currentImage);
+        console.log("inside nextSlide current img is "+currentImage);
+    }
+
+    
 
 }
 
 function prevSlide(){
-    currentImage = getPrevImg();
-    preview.src = localStorage.getItem(currentImage);
-    console.log("inside prevSlide current img is "+currentImage);
+hideAddBtn();
 
+    if(arrImgs.length === 0){
+        alert("Necesitas Subir Una foto!")
+    } else{
+        currentImage = getPrevImg();
+        preview.src = localStorage.getItem(currentImage);
+        setText(currentImage);
+        console.log("inside prevSlide current img is "+currentImage);
+    }
 
+    
 }
+
+// function checkEmptyPreview (){
+//     if(arrImgs.length === 0){
+//         alert("Necesitas Subir Una foto!")
+//     }
+// }
 
 // function navSlides(i){
 //     let currentIndx = currenntImgIndx();
@@ -288,3 +323,11 @@ function currentSlideName(){
     const currentImgName = arrImgs[currentIndx];
     return currentImgName;
 }
+
+// function removePreview(){
+//     let current = currenntImgIndx();
+//     if(arrImgs.length === 1){
+//         preview.src = "imgs/muestra.jpg";
+//     }
+//     prevSlide();
+// }
