@@ -2,6 +2,7 @@
 // Grab elements, create settings, etc.
 var video = document.getElementById('video');
 
+
 // Get access to the camera!
 if(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
     // Not adding `{ audio: true }` since we only want video now
@@ -21,6 +22,8 @@ var video = document.getElementById('video');
 document.getElementById("snap").addEventListener("click", function() {
     context.drawImage(video, 0, 0, 640, 480);
     document.getElementById("save-picture").style = "display: block";
+
+    
 });
 
 
