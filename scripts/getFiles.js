@@ -6,6 +6,13 @@ let currentImage = "";
 
 const preview = document.querySelector('#imagenGaleria');
 
+const savePictureBtn = document.getElementById("save-picture");
+savePictureBtn.addEventListener("click", saveImageFromCanvas);
+
+function saveImageFromCanvas(){
+    
+}
+
 
 //https://developer.mozilla.org/en-US/docs/Web/API/FileReader/readAsDataURL
 document.querySelector('#captureFile').addEventListener("change", previewFile);
