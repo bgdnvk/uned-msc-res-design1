@@ -14,7 +14,7 @@
        https://getbootstrap.com/docs/4.5/components/navbar/
      -->
   <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-    <a class="navbar-brand" href="#">Ver Github</a>
+    <a class="navbar-brand" href="https://github.com/bgdnvk/uned-msc-res-design1">Ver Github</a>
     <!--
       Se agrega el buton para toggle
     -->
@@ -83,6 +83,16 @@
     </div>
     <div id="galeriaThumb" class="container-galeria"></div>
 
+    <div id="geo-container">
+      <button id = "find-me">Dónde estoy?</button><br/>
+      <p id = "status"></p>
+      <a id = "map-link" target="_blank"></a>
+
+      <div id="mapholder"></div>
+
+      <div id="mapid"></div>
+    </div>
+
     <!-- <input id="imgChange" type="file"><br>
     <img id="newImg" alt="newimgtochange"> -->
     
@@ -103,18 +113,28 @@
     <!--
 	Ideally these elements aren't created until it's confirmed that the 
 	client supports video/camera, but for the sake of illustrating the 
-	elements involved, they are created with markup (not JavaScript)
+  elements involved, they are created with markup (not JavaScript)
 --> <video id="video" width="640" height="480" autoplay></video>
     <button id="snap">Snap Photo</button>
     <canvas id="canvas" width="640" height="480"></canvas>
+
+
   </div>
 
- 
+  <!--LEFLET
+    https://leafletjs.com/-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+    integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+    crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+    crossorigin=""></script>
   
     <!--
         https://getbootstrap.com/docs/4.1/getting-started/download/#bootstrapcdn
     -->
     <script src="scripts/filters.js"></script>
+    <script src="scripts/geolocation.js"></script>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
@@ -127,6 +147,7 @@
     <script src="scripts/camera.js"></script>
     <script src="scripts/getFiles.js"></script>
     <!-- <script src="scripts/gallery.js"></script> -->
+
    
 
 </body>
