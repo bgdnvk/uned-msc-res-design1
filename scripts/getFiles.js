@@ -11,12 +11,10 @@ savePictureBtn.addEventListener("click", saveImageFromCanvas);
 let savedPictureCounter = 0;
 
 function saveImageFromCanvas(){
-
     savedPictureCounter++;
     let imageName = `ImagenCam${savedPictureCounter}`;
     localStorage.setItem(imageName,canvas.toDataURL());
     addImgs(imageName);
- 
 }
 
 
@@ -37,14 +35,9 @@ const removeBtn = document.querySelector("#remove");
 // removeBtn.style.display = "none";
 
 function previewFile() {
-    // console.log("is triggered");
-    // const preview = document.querySelector('#imagenGaleria');
     const {file, reader} = getFileReader();
-
     addBtn.style.display = "block";
     // removeBtn.style.display = "block";
-    
-
     reader.addEventListener("load", function () {
       // convert image file to base64 string
       preview.src = reader.result;
@@ -52,8 +45,6 @@ function previewFile() {
     //   console.log("file on load is "+file.name);
         
     }, false);
- 
-
   }
 
 function getFileReader(){
@@ -64,12 +55,9 @@ function getFileReader(){
     if (file) {
         reader.readAsDataURL(file);
       }
-
-    console.log("inside fileReader");
-    console.log(reader.result);
-    console.log(file);
-
-   
+    // console.log("inside fileReader");
+    // console.log(reader.result);
+    // console.log(file);
     return {
         file: file,
         reader: reader
@@ -77,16 +65,12 @@ function getFileReader(){
 }
 
 
-
 function saveImage(){
     const {file, reader} = getFileReader();
-
-    
     //check para comprobar si se ha subido una img
     if(arrImgs.length === 0 && reader.result === null){
         alert("Necesitas subir una foto");
     }
-  
         reader.onload = () => {
             try {
                 localStorage.setItem(`${file.name}`, reader.result);
@@ -111,34 +95,24 @@ function removeImage(){
         alert("No hay nada que borrar");
     } else {
         let currentSlide = currentSlideName();
-        console.log("about to remove: "+currentSlide);
-        console.log("about to remove indx: "+currenntImgIndx());
-        console.log("arr b4 removing is "+arrImgs);
-    
-    
+        // console.log("about to remove: "+currentSlide);
+        // console.log("about to remove indx: "+currenntImgIndx());
+        // console.log("arr b4 removing is "+arrImgs);
         let prevSlide = getPrevImg();
-    
         preview.src = localStorage.getItem(prevSlide);
-        console.log("current picture is "+prevSlide);
-    
+        // console.log("current picture is "+prevSlide);
         removeThumb(currentSlide);
         arrImgRemove(currentSlide);
         localStorage.removeItem(currentSlide);
-    
         currentImage = prevSlide;
         setText(currentImage);
         console.log("currentImage is: ");
         console.log(currentImage);
         console.log("arr after removing is "+arrImgs);
-
         if(arrImgs.length === 0){
             preview.src = "imgs/muestra.jpg";
         }
     }
-    
-
-
-
 }
 
 //función para agregar imagenes a la galería
@@ -148,7 +122,6 @@ function addImgs(imagen){
     console.log("dentro d addimgs");
     // console.log(img);
     img.src = localStorage.getItem(imagen);
-
     arrImgs.push(imagen);
     currentImage = imagen;
     // console.log(imagen);
@@ -160,13 +133,12 @@ function addImgs(imagen){
 
 window.addEventListener('load', (event) => {
     console.log('page is fully loaded');
-    // console.log(event);
-
+    
+    //no estoy seguro por qué este método no funciona
     // for(let k in localStorage){
     //     console.log(localStorage.getItem(k));
     // }
     // const galeria = document.querySelector("#gallery");
-
     Object.keys(localStorage).forEach(function(key){
         addImgs(key);
         // addThumb(key);
@@ -185,9 +157,6 @@ function addThumb(img){
     const galeriaThumb = document.querySelector("#galeriaThumb");
     const imgThumb = document.createElement("img");
 
-    // console.log("thimb added is");
-    // console.log(img);
-
     if(document.getElementById(img)){
         alert("Ya has agregado esta imagen!");
     } else {
@@ -195,19 +164,11 @@ function addThumb(img){
         imgThumb.style.width = "300px";
         imgThumb.style.height = "300px";
         imgThumb.id = img;
-        
-    
-        // imgThumb.height = "200px";
         imgThumb.className = "img-fluid";
         imgThumb.className = "img-thumbnail";
-        // imgThumb.className = "rounded";
-    
-    
+
         galeriaThumb.appendChild(imgThumb);
     }
-
-   
-
   }
 
 function removeThumb(imgName){
@@ -230,7 +191,6 @@ function setText(imagen){
 function currenntImgIndx(){
     // console.log("----currentImgIndx is "+arrImgs.indexOf(currentSlideName()));
     console.log("----currentImgIndx is "+arrImgs.indexOf(currentImage));
-
     // console.log(arrImgs.indexOf(currentSlideName()));
     return arrImgs.indexOf(currentImage);
 }
@@ -262,11 +222,9 @@ function getPrevImg(){
 function getNextImg(){
     // console.log(arrImgs.length);
     // console.log("^thats length");
-
     if(arrImgs.length === 1){
         return currentSlideName();
     }
-
     // console.log("inside getNextImg");
     // console.log(currentSlideName());
     // console.log(currenntImgIndx());
@@ -274,16 +232,14 @@ function getNextImg(){
         // console.log(currentSlideName());
         return arrImgs[0];
     }
-    
     // console.log(arrImgs[currenntImgIndx+1]);
     return arrImgs[currenntImgIndx()+1];
 }
 
 
 function nextSlide(){
-hideAddBtn();
+    hideAddBtn();
     
-
     if(arrImgs.length === 0){
         alert("Necesitas Subir Una foto!")
     } else{
@@ -292,14 +248,10 @@ hideAddBtn();
         setText(currentImage);
         console.log("inside nextSlide current img is "+currentImage);
     }
-
-    
-
 }
 
 function prevSlide(){
-hideAddBtn();
-
+    hideAddBtn();
     if(arrImgs.length === 0){
         alert("Necesitas Subir Una foto!")
     } else{
@@ -308,22 +260,7 @@ hideAddBtn();
         setText(currentImage);
         console.log("inside prevSlide current img is "+currentImage);
     }
-
-    
 }
-
-// function checkEmptyPreview (){
-//     if(arrImgs.length === 0){
-//         alert("Necesitas Subir Una foto!")
-//     }
-// }
-
-// function navSlides(i){
-//     let currentIndx = currenntImgIndx();
-//     if (arrImgs.length-i <= 0){
-
-//     }
-// }
 
 function currentSlideValue(){
     const currentIndx = arrImgs.indexOf(currentImage);
@@ -336,11 +273,3 @@ function currentSlideName(){
     const currentImgName = arrImgs[currentIndx];
     return currentImgName;
 }
-
-// function removePreview(){
-//     let current = currenntImgIndx();
-//     if(arrImgs.length === 1){
-//         preview.src = "imgs/muestra.jpg";
-//     }
-//     prevSlide();
-// }
