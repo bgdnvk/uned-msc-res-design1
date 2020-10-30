@@ -34,6 +34,10 @@
     /* flex-direction: column; */
      /* justify-content: flex-start;  */
      background-color: rgb(209, 198, 184);
+
+     
+     display: flex;
+     justify-content: space-between;
   }
 
   .galeria-centro{
