@@ -194,8 +194,13 @@ function removeThumb(imgName){
 //recorte y manipulación de texto en el preview
 function setText(imagen){
     const text = document.querySelector("#imageName");
-    imagen.substring(0, 10) === "ImagenCam" ? text.innerHTML = imagen : text.innerHTML = imagen.slice(0,-4); 
-    // text.innerHTML = imagen.slice(0,-4); 
+    //no funciona con firefox?
+    // imagen.substring(0, 10) === "ImagenCam" ? text.innerHTML = imagen : text.innerHTML = imagen.slice(0,-4); 
+    if(imagen.substring(0, 10) === "ImagenCam"){
+        text.innerHTML = imagen
+    } else {
+        text.innerHTML = imagen.slice(0,-4); 
+    }
     // console.log(typeof(imagen));
   }
 
