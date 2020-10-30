@@ -17,3 +17,8 @@
     -webkit-filter: blur(5px);
     filter: blur(5px);
 }
+
+.saturate{
+  -webkit-filter: saturate(8);
+  filter: saturate(8);
+}

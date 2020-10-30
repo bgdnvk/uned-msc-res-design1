@@ -34,22 +34,22 @@
           >subir foto
           </a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link" href="#">ver fotos</a>
-        </li>
+        </li> -->
         <li class="nav-item">
-          <a class="nav-link" href="#">localización</a>
+          <a class="nav-link" href="#find-me">localizame</a>
         </li>    
         <!--
           Se agrega otro menú dropdown para estilos
         -->
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            filters
+            Filtros
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" onclick="sepia()" href="#">Sepia</a>
-            <a class="dropdown-item" onclick="hue()" href="#">Rotar Hue</a>
+            <a class="dropdown-item" onclick="saturate()" href="#">Saturar</a>
             <a class="dropdown-item" onclick="contrast()" href="#">Contraste</a>
             <a class="dropdown-item" onclick="blurr()" href="#">Blurr</a>
             <a class="dropdown-item" onclick="clearFilters()" href="#">Borrar Filtros</a>
@@ -89,28 +89,7 @@
 
       <div id="mapid"></div>
     </div>
-
-    <!-- <input id="imgChange" type="file"><br>
-    <img id="newImg" alt="newimgtochange"> -->
     
-
-    <!-- <div id="camera-body">
-      <div class="camera">
-        <video id="video">Video stream not available.</video>
-        <button id="startbutton">Take photo</button>
-      </div>
-   
-      <canvas id="canvas">
-      </canvas>
-      <div class="output">
-        <img id="photo" alt="The screen capture will appear in this box.">
-      </div>
-    </div> -->
-
-    <!--
-	Ideally these elements aren't created until it's confirmed that the 
-	client supports video/camera, but for the sake of illustrating the 
-  elements involved, they are created with markup (not JavaScript)
 --> <video id="video" width="640" height="480" autoplay></video>
     <button id="snap">Tomar Foto</button>
     <canvas id="canvas" width="640" height="480"></canvas>

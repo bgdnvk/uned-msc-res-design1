@@ -1,4 +1,5 @@
 //https://developer.mozilla.org/en-US/docs/Web/API/Geolocation_API
+//he reusado el código de mozilla pues me parece perfecto para lo que necesito
 function geoFindMe() {
 
     const status = document.querySelector('#status');

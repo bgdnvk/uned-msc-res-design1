@@ -1,5 +1,5 @@
 //https://css-tricks.com/almanac/properties/f/filter/
-// const preview = document.querySelector('#imagenGaleria');
+//me imagino que esto se podría hacer con una única funcion con un switcj
 
 function sepia(){
     preview.classList.add("sepia");
@@ -8,6 +8,10 @@ function sepia(){
 function hue(){
     preview.classList.add("hue");
 
+}
+
+function saturate(){
+    preview.classList.add("saturate");
 }
 
 function blurr(){

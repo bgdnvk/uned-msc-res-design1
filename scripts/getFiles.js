@@ -5,15 +5,8 @@ let currentImage = "";
 
 
 const preview = document.querySelector('#imagenGaleria');
-
-
-
-
 const savePictureBtn = document.getElementById("save-picture");
-
-// const canvas = document.getElementById('canvas');
 const savedCanvas = document.getElementById('saved-canvas');
-
 savePictureBtn.addEventListener("click", saveImageFromCanvas);
 let savedPictureCounter = 0;
 
@@ -23,8 +16,7 @@ function saveImageFromCanvas(){
     let imageName = `ImagenCam${savedPictureCounter}`;
     localStorage.setItem(imageName,canvas.toDataURL());
     addImgs(imageName);
-    // let dataURL = canvas.toDataURL('image/png');
-    // savedCanvas.src = dataURL;
+ 
 }
 
 
