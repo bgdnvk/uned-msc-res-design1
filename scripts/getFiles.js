@@ -196,7 +196,7 @@ function setText(imagen){
     const text = document.querySelector("#imageName");
     //no funciona con firefox?
     // imagen.substring(0, 10) === "ImagenCam" ? text.innerHTML = imagen : text.innerHTML = imagen.slice(0,-4); 
-    if(imagen.substring(0, 10) === "ImagenCam"){
+    if(imagen.substring(0, 9) === "ImagenCam"){
         text.innerHTML = imagen
     } else {
         text.innerHTML = imagen.slice(0,-4); 
