@@ -34,9 +34,9 @@
           >subir foto
           </a>
         </li>
-        <!-- <li class="nav-item">
-          <a class="nav-link" href="#">ver fotos</a>
-        </li> -->
+        <li class="nav-item">
+          <a class="nav-link" href="#" onclick="deleteStoredPictures()">borrar fotos</a>
+        </li>
         <li class="nav-item">
           <a class="nav-link" href="#find-me">localizame</a>
         </li>    
@@ -90,7 +90,7 @@
       <div id="mapid"></div>
     </div>
 
---> <video id="video" width="640" height="480" autoplay></video>
+   <video id="video" width="640" height="480" autoplay></video>
     <button id="snap">Tomar Foto</button>
     <canvas id="canvas" width="640" height="480"></canvas>
     <button id="save-picture" style="display: none;">Guardar Foto</button>
@@ -98,33 +98,30 @@
 
   </div>
 
-  <!--LEFLET
+    <!--LEFLET
     https://leafletjs.com/-->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
     integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
     crossorigin=""/>
-  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
     integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
     crossorigin=""></script>
-  
-    <!--
-        https://getbootstrap.com/docs/4.1/getting-started/download/#bootstrapcdn
-    -->
-    <script src="scripts/filters.js"></script>
-    <script src="scripts/geolocation.js"></script>
-
+    
+    <!-- Google Material Design-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
+    <!--CSS/STYLES -->
     <link rel="stylesheet" href="styles/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="styles/filtros.css">
+
+    <!--JS/SCRIPTS-->
+    <script src="scripts/filters.js"></script>
+    <script src="scripts/geolocation.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script> -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="scripts/camera.js"></script>
     <script src="scripts/getFiles.js"></script>
-    <!-- <script src="scripts/gallery.js"></script> -->
-
    
 
 </body>
