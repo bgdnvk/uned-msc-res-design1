@@ -2,31 +2,28 @@
 //me imagino que esto se podría hacer con una única funcion con un switch
 
 function sepia(){
-    preview.classList.add("sepia");
     clearFilters();
+    preview.classList.add("sepia");
 }
 
 function hue(){
-    preview.classList.add("hue");
     clearFilters();
-
+    preview.classList.add("hue");
 }
 
 function saturate(){
-    preview.classList.add("saturate");
     clearFilters();
-
+    preview.classList.add("saturate");
 }
 
 function blurr(){
-    preview.classList.add("blurr");
     clearFilters();
-
+    preview.classList.add("blurr");
 }
 
 function contrast(){
-    preview.classList.add("contrast");
     clearFilters();
+    preview.classList.add("contrast");
 }
 
 function clearFilters(){

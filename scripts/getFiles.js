@@ -10,11 +10,24 @@ const savedCanvas = document.getElementById('saved-canvas');
 savePictureBtn.addEventListener("click", saveImageFromCanvas);
 let savedPictureCounter = 0;
 
+//guardar img del canvas de la foto
 function saveImageFromCanvas(){
     savedPictureCounter++;
     let imageName = `ImagenCam${savedPictureCounter}`;
     localStorage.setItem(imageName,canvas.toDataURL());
+    console.log("imagefrom cam: "+imageName);
     addImgs(imageName);
+}
+
+//se borra todas las imagenes, tanto locales como a la vista
+function deletePictures(){
+    localStorage.clear();
+    preview.src = "imgs/muestra.jpg"
+    savedPictureCounter = 0;
+    hideAddBtn();
+    arrImgs = [];
+    currentImage = "muestra.jpg"
+    document.getElementById("galeriaThumb").innerHTML = "";
 }
 
 
@@ -24,7 +37,7 @@ document.querySelector('#captureFile').addEventListener("change", previewFile);
 const addBtn = document.querySelector("#add");
 addBtn.addEventListener("click", saveImage);
 
-
+//ocultaro el boton de agregar
 function hideAddBtn(){
     addBtn.style.display = "none";
 }
@@ -34,6 +47,7 @@ document.querySelector("#remove").addEventListener("click", removeImage);
 const removeBtn = document.querySelector("#remove");
 // removeBtn.style.display = "none";
 
+//se usa para ver la imagen subida
 function previewFile() {
     const {file, reader} = getFileReader();
     addBtn.style.display = "block";
@@ -43,15 +57,13 @@ function previewFile() {
       preview.src = reader.result;
       setText(file.name);
     //   console.log("file on load is "+file.name);
-        
     }, false);
   }
 
+//se lee la imagen subido y devuelve un obj con la información
 function getFileReader(){
-    
     const file = document.querySelector('input[type=file]').files[0];
     const reader = new FileReader();
-
     if (file) {
         reader.readAsDataURL(file);
       }
@@ -64,7 +76,7 @@ function getFileReader(){
     };
 }
 
-
+//guardar la imagen al pulsar el btn +
 function saveImage(){
     const {file, reader} = getFileReader();
     //check para comprobar si se ha subido una img
@@ -74,8 +86,6 @@ function saveImage(){
         reader.onload = () => {
             try {
                 localStorage.setItem(`${file.name}`, reader.result);
-                
-
                 console.log("saved item");
                 // console.log(file.name);
                 // console.log(reader.result);
@@ -87,7 +97,7 @@ function saveImage(){
 
         } 
 }
-
+//se elimina la imagen al pulsar el btn +
 function removeImage(){
     console.log("####inside removeImage");
 
@@ -130,10 +140,9 @@ function addImgs(imagen){
     addThumb(imagen);
     setText(imagen);
 }
-
-window.addEventListener('load', (event) => {
+//se carga la información local dentro de la página
+window.addEventListener('load', () => {
     console.log('page is fully loaded');
-    
     //no estoy seguro por qué este método no funciona
     // for(let k in localStorage){
     //     console.log(localStorage.getItem(k));
@@ -151,12 +160,15 @@ window.addEventListener('load', (event) => {
      console.log("arr is");
      console.log(arrImgs);
   });
-
-//se agrega los thumbnails
+/**
+ * 
+ * ---------   Thumbnails
+ */
+//se agregan los thumbnails
 function addThumb(img){
     const galeriaThumb = document.querySelector("#galeriaThumb");
     const imgThumb = document.createElement("img");
-
+    //si la imagen ya existe se envía un error (alert)
     if(document.getElementById(img)){
         alert("Ya has agregado esta imagen!");
     } else {
@@ -179,13 +191,16 @@ function removeThumb(imgName){
     thumb.remove();
 }
 
+//recorte y manipulación de texto en el preview
 function setText(imagen){
     const text = document.querySelector("#imageName");
     text.innerHTML = imagen.slice(0,-4); 
     // console.log(typeof(imagen));
   }
 
-
+/**
+ * ---------- Localicación y manipulación de las imagenes que tenemos ----------------
+ */
 
 //Local storage/array manipulación
 function currenntImgIndx(){
