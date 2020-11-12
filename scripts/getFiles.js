@@ -51,12 +51,9 @@ const removeBtn = document.querySelector("#remove");
 function previewFile() {
     const {file, reader} = getFileReader();
     addBtn.style.display = "block";
-    // removeBtn.style.display = "block";
     reader.addEventListener("load", function () {
-      // convert image file to base64 string
       preview.src = reader.result;
       setText(file.name);
-    //   console.log("file on load is "+file.name);
     }, false);
   }
 
@@ -67,9 +64,6 @@ function getFileReader(){
     if (file) {
         reader.readAsDataURL(file);
       }
-    // console.log("inside fileReader");
-    // console.log(reader.result);
-    // console.log(file);
     return {
         file: file,
         reader: reader
@@ -150,11 +144,6 @@ window.addEventListener('load', () => {
     // const galeria = document.querySelector("#gallery");
     Object.keys(localStorage).forEach(function(key){
         addImgs(key);
-        // addThumb(key);
-        // console.log(key);
-        // console.log(localStorage);
-        // console.log(arrImgs);
-        // console.log(currentImage);
      });
 
      console.log("arr is");
